@@ -1,0 +1,43 @@
+{
+    "name": "verbb/default-dashboard",
+    "description": "A Craft CMS plugin to set default dashboard widgets for users.",
+    "type": "craft-plugin",
+    "version": "1.0.0",
+    "keywords": [
+        "craft",
+        "cms",
+        "craftcms",
+        "craft-plugin"
+    ],
+    "support": {
+        "email": "support@verbb.io",
+        "issues": "https://github.com/verbb/default-dashboard/issues?state=open",
+        "source": "https://github.com/verbb/default-dashboard",
+        "docs": "https://github.com/verbb/default-dashboard",
+        "rss": "https://github.com/verbb/default-dashboard/commits/v2.atom"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Verbb",
+            "homepage": "https://verbb.io"
+        }
+    ],
+    "require": {
+        "craftcms/cms": "^3.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+          "verbb\\defaultdashboard\\": "src/"
+        }
+    },
+    "extra": {
+        "name": "Default Dashboard",
+        "handle": "default-dashboard",
+        "schemaVersion": "1.0.0",
+        "hasCpSettings": true,
+        "hasCpSection": false,
+        "changelogUrl": "https://raw.githubusercontent.com/verbb/default-dashboard/master/CHANGELOG.md",
+        "class": "verbb\\defaultdashboard\\DefaultDashboard"
+    }
+}

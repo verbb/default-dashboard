@@ -1,0 +1,41 @@
+{% extends 'default-dashboard/_layouts' %}
+{% import '_includes/forms' as forms %}
+
+{% set crumbs = [
+    { label: 'Default Dashboard' | t('default-dashboard'), url: url('default-dashboard/settings') },
+    { label: 'Settings' | t('default-dashboard'), url: url('default-dashboard/settings') }
+] %}
+
+{% set fullPageForm = true %}
+
+{% block content %}
+
+<input type="hidden" name="action" value="plugins/save-plugin-settings">
+<input type="hidden" name="pluginHandle" value="default-dashboard">
+
+{% set options = [] %}
+
+{% for user in craft.users.all() %}
+    {% set options = options | merge([{ label: user.fullName(), value: user.id }]) %}
+{% endfor %}
+
+{% namespace 'settings' %}
+    {{ forms.selectField({
+        label: 'Default User Dashboard' | t('default-widgets'),
+        instructions: 'Select a user to use as the default dashboard, mirrored to all other users.' | t('default-widgets'),
+        id: 'userDashboard',
+        name: 'userDashboard',
+        options: options,
+        value: settings.userDashboard,
+    }) }}
+
+    {{ forms.lightswitchField({
+        label: 'Override User Dashboard' | t('default-widgets'),
+        instructions: 'Whether to force the default dashboard, overwriting any user-specific ones. This will occur on each login.' | t('default-widgets'),
+        id: 'override',
+        name: 'override',
+        on: settings.override,
+    }) }}
+{% endnamespace %}
+
+{% endblock %}
