@@ -84,6 +84,17 @@
 		"rFN": 0,
 		"uCM": 0
 		},
+	"\/screenshots\/settings.png": {
+		"ft": 32768,
+		"iS": 116633,
+		"oA": 0,
+		"oAP": "\/screenshots\/settings.png",
+		"oF": 0,
+		"oIPL": 0,
+		"opt": 0,
+		"oT": 1,
+		"q": 100
+		},
 	"\/src\/assetbundles": {
 		"ft": 65536,
 		"oA": 1,

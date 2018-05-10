@@ -19,7 +19,7 @@ class DefaultDashboardAsset extends AssetBundle
         ];
 
         $this->css = [
-            'css/element-index-defaults.css',
+            'css/default-dashboard.css',
         ];
 
         parent::init();

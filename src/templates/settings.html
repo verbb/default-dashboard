@@ -21,7 +21,7 @@
 
 {% namespace 'settings' %}
     {{ forms.selectField({
-        label: 'Default User Dashboard' | t('default-widgets'),
+        label: 'Default User Dashboard' | t('default-dashboard'),
         instructions: 'Select a user to use as the default dashboard, mirrored to all other users.' | t('default-widgets'),
         id: 'userDashboard',
         name: 'userDashboard',
@@ -30,8 +30,8 @@
     }) }}
 
     {{ forms.lightswitchField({
-        label: 'Override User Dashboard' | t('default-widgets'),
-        instructions: 'Whether to force the default dashboard, overwriting any user-specific ones. This will occur on each login.' | t('default-widgets'),
+        label: 'Override User Dashboard' | t('default-dashboard'),
+        instructions: 'Whether to force the default dashboard, overwriting any user-specific ones. This will occur on each login.' | t('default-dashboard'),
         id: 'override',
         name: 'override',
         on: settings.override,
