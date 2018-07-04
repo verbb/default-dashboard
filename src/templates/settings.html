@@ -16,7 +16,13 @@
 {% set options = [] %}
 
 {% for user in craft.users.all() %}
-    {% set options = options | merge([{ label: user.fullName(), value: user.id }]) %}
+    {% set label = user.username %}
+
+    {% if user.fullName() %}
+        {% set label = user.fullName() %}
+    {% endif %}
+
+    {% set options = options | merge([{ label: label, value: user.id }]) %}
 {% endfor %}
 
 {% namespace 'settings' %}
