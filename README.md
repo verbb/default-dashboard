@@ -1,12 +1,12 @@
 # Default Dashboard Plugin for Craft CMS
 
-<img src="https://github.com/verbb/default-dashboard/blob/master/screenshots/settings.png">
-
 Default Dashboard is a Craft CMS plugin that makes it possible to setup default widgets for each of your users. Rather than setting up widgets for each user manually, or instructing your client - have them populated automatically.
 
 This is achieved by setting the base user account from which to copy dashboard widgets from. Each time your users log into the control panel, Default Dashboard will populate their dashboard widgets. Default Dashboard is also smart enough to know when your widgets have changed, and to not update other users unless they have. This saves needless database updating. 
 
 Importantly, you can allow your users to modify their widgets by turning off the `Override` function. With this turned on, all users' widgets will be replaced when thet login, so any of their widgets will be lost. Turning this off still provides users with your initial default widgets, but they're free to alter them to their needs.
+
+<img src="https://github.com/verbb/default-dashboard/blob/master/screenshots/settings.png" style="box-shadow: 0 4px 16px rgba(0,0,0,0.08); border-radius: 4px; border: 1px solid rgba(0,0,0,0.12);">
 
 ## Installation
 You can install Default Dashboard via the plugin store, or through Composer.
