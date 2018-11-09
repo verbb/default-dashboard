@@ -8,6 +8,26 @@ This is achieved by setting the base user account from which to copy dashboard w
 
 Importantly, you can allow your users to modify their widgets by turning off the `Override` function. With this turned on, all users' widgets will be replaced when thet login, so any of their widgets will be lost. Turning this off still provides users with your initial default widgets, but they're free to alter them to their needs.
 
+## Installation
+You can install Default Dashboard via the plugin store, or through Composer.
+
+### Craft Plugin Store
+To install **Default Dashboard**, navigate to the _Plugin Store_ section of your Craft control panel, search for `Default Dashboard`, and click the _Try_ button.
+
+### Composer
+You can also add the package to your project using Composer.
+
+1. Open your terminal and go to your Craft project:
+
+        cd /path/to/project
+
+2. Then tell Composer to load the plugin:
+    
+        composer require verbb/default-dashboard
+
+3. In the Control Panel, go to Settings → Plugins and click the “Install” button for Default Dashboard.
+
+
 ### Control Panel
 
 Install the plugin, go to Settings > Default Dashboard. Select the user from which to mirror dashboard widget from (most commongly yourself), and whether you want to force your widgets to overwrite their own.
