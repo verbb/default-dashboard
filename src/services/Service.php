@@ -46,6 +46,11 @@ class Service extends Component
 
             // Update the logged in users widgets
             $this->_setUserWidgets($currentUser, $defaultUserWidgets);
+
+            // Update the user with their dashboard-set flag so the default widgets aren't added
+            Craft::$app->getDb()->createCommand()
+                ->update('{{%users}}', ['hasDashboard' => true], ['id' => $currentUser->id])
+                ->execute();
         }
     }
 
