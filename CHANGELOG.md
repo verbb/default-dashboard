@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.3 - 2018-11-12
+
+### Changed
+- Settings dropdown shows name and email.
+
+### Fixed
+- Fix default widgets also being added on first first login.
+
 ## 1.0.2 - 2018-07-05
 
 ### Fixed
