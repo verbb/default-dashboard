@@ -19,7 +19,7 @@
     {% set label = user.username %}
 
     {% if user.fullName() %}
-        {% set label = user.fullName() %}
+        {% set label = user.fullName() ~ ' (' ~ user.email ~ ')' %}
     {% endif %}
 
     {% set options = options | merge([{ label: label, value: user.id }]) %}
