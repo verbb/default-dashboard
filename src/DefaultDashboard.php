@@ -72,6 +72,8 @@ class DefaultDashboard extends Plugin
 
     private function _registerEventHandlers()
     {
+        DefaultDashboard::log("_registerEventHandlers()");
+
         Event::on(User::class, User::EVENT_AFTER_LOGIN, [$this->getService(), 'afterUserLogin']);
     }
 }
