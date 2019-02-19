@@ -6,7 +6,7 @@ This is achieved by setting the base user account from which to copy dashboard w
 
 Importantly, you can allow your users to modify their widgets by turning off the `Override` function. With this turned on, all users' widgets will be replaced when thet login, so any of their widgets will be lost. Turning this off still provides users with your initial default widgets, but they're free to alter them to their needs.
 
-<img src="https://github.com/verbb/default-dashboard/blob/master/screenshots/settings.png" style="box-shadow: 0 4px 16px rgba(0,0,0,0.08); border-radius: 4px; border: 1px solid rgba(0,0,0,0.12);">
+<img src="https://github.com/verbb/default-dashboard/blob/craft-3/screenshots/settings.png" style="box-shadow: 0 4px 16px rgba(0,0,0,0.08); border-radius: 4px; border: 1px solid rgba(0,0,0,0.12);">
 
 ## Installation
 You can install Default Dashboard via the plugin store, or through Composer.
