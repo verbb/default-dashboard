@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.4 - 2019-02-22
+
+### Added
+- Adding plugin logging.
+
 ## 1.0.3 - 2018-11-12
 
 ### Changed
