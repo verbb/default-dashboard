@@ -16,8 +16,6 @@ class Service extends Component
 
     public function afterUserLogin(UserEvent $event)
     {
-        DefaultDashboard::log("afterUserLogin()");
-        
         $settings = DefaultDashboard::$plugin->getSettings();
 
         // For the moment, only check on CP requests
