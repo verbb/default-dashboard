@@ -19,7 +19,7 @@ class DefaultDashboard extends Plugin
     // =========================================================================
 
     public $schemaVersion = '1.0.0';
-    public $hasSettings = true;
+    public $hasCpSettings = true;
 
 
     // Traits
