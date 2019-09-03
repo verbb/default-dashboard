@@ -12,4 +12,5 @@ class Settings extends Model
 
     public $override = true;
 
+    public $excludeAdmin = false;
 }

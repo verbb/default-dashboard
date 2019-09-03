@@ -26,6 +26,7 @@ class Service extends Component
 
         $currentUser = $event->identity;
         $defaultUser = Craft::$app->users->getUserById($settings->userDashboard);
+        $isAdmin = Craft::$app->user->getIsAdmin();
 
         if (!$defaultUser) {
             DefaultDashboard::error("Default User not found for ID: $settings->userDashboard");
@@ -47,7 +48,8 @@ class Service extends Component
         DefaultDashboard::log("Default User Widget: " . json_encode($this->_widgets($defaultUserWidgets)));
 
         // If this user has no widgets, create them and finish - or, if we're forcing override
-        if (!$currentUserWidgets || $settings->override) {
+        // If this user is an Admin User, and excludeAdmin set to true, not overwrite
+        if ((!$currentUserWidgets || $settings->override) && (!$settings->excludeAdmin || !$isAdmin)) {
             // To prevent massive re-creating of widgets each login, check if default vs current is different
             if ($this->_compareWidgets($currentUserWidgets, $defaultUserWidgets)) {
                 DefaultDashboard::log("Users widgets are the same");
