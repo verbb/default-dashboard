@@ -12,4 +12,8 @@ class Settings extends Model
 
     public $override = true;
 
+    // Logging
+    public $logInfo = false;
+    public $logErrors = false;
+
 }
