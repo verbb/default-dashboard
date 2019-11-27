@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.6 - 2019-11-27
+
+### Added
+- Add plugin setting to exclude admin users from applying default dashboard. Thanks @xhuang9.
+
 ## 1.0.5 - 2019-03-19
 
 ### Fixed
