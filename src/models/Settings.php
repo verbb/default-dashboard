@@ -9,8 +9,8 @@ class Settings extends Model
     // =========================================================================
 
     public $userDashboard = 1;
-
     public $override = true;
+    public $excludeAdmin = false;
 
     // Logging
     public $logInfo = false;

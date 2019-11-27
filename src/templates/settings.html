@@ -42,6 +42,14 @@
         name: 'override',
         on: settings.override,
     }) }}
+
+    {{ forms.lightswitchField({
+        label: 'Exclude Admin User' | t('default-dashboard'),
+        instructions: 'Whether to exclude the admin user when force overwrite is enabled. This will occur on each login.' | t('default-dashboard'),
+        id: 'excludeAdmin',
+        name: 'excludeAdmin',
+        on: settings.excludeAdmin,
+    }) }}
 {% endnamespace %}
 
 {% endblock %}
