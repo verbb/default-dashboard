@@ -3,12 +3,13 @@
 
 {% set crumbs = [
     { label: 'Default Dashboard' | t('default-dashboard'), url: url('default-dashboard/settings') },
-    { label: 'Settings' | t('default-dashboard'), url: url('default-dashboard/settings') }
+    { label: 'Settings' | t('app'), url: url('default-dashboard/settings') }
 ] %}
 
+{% set selectedTab = 'settings' %}
 {% set fullPageForm = true %}
 
-{% block content %}
+{% block blockContent %}
 
 <input type="hidden" name="action" value="plugins/save-plugin-settings">
 <input type="hidden" name="pluginHandle" value="default-dashboard">
@@ -26,30 +27,33 @@
 {% endfor %}
 
 {% namespace 'settings' %}
-    {{ forms.selectField({
-        label: 'Default User Dashboard' | t('default-dashboard'),
-        instructions: 'Select a user to use as the default dashboard, mirrored to all other users.' | t('default-widgets'),
-        id: 'userDashboard',
-        name: 'userDashboard',
-        options: options,
-        value: settings.userDashboard,
-    }) }}
 
-    {{ forms.lightswitchField({
-        label: 'Override User Dashboard' | t('default-dashboard'),
-        instructions: 'Whether to force the default dashboard, overwriting any user-specific ones. This will occur on each login.' | t('default-dashboard'),
-        id: 'override',
-        name: 'override',
-        on: settings.override,
-    }) }}
+{{ forms.selectField({
+    first: true,
+    label: 'Default User Dashboard' | t('default-dashboard'),
+    instructions: 'Select a user to use as the default dashboard, mirrored to all other users.' | t('default-widgets'),
+    id: 'userDashboard',
+    name: 'userDashboard',
+    options: options,
+    value: settings.userDashboard,
+}) }}
 
-    {{ forms.lightswitchField({
-        label: 'Exclude Admin User' | t('default-dashboard'),
-        instructions: 'Whether to exclude the admin user when force overwrite is enabled. This will occur on each login.' | t('default-dashboard'),
-        id: 'excludeAdmin',
-        name: 'excludeAdmin',
-        on: settings.excludeAdmin,
-    }) }}
+{{ forms.lightswitchField({
+    label: 'Override User Dashboard' | t('default-dashboard'),
+    instructions: 'Whether to force the default dashboard, overwriting any user-specific ones. This will occur on each login.' | t('default-dashboard'),
+    id: 'override',
+    name: 'override',
+    on: settings.override,
+}) }}
+
+{{ forms.lightswitchField({
+    label: 'Exclude Admin User' | t('default-dashboard'),
+    instructions: 'Whether to exclude the admin user when force overwrite is enabled. This will occur on each login.' | t('default-dashboard'),
+    id: 'excludeAdmin',
+    name: 'excludeAdmin',
+    on: settings.excludeAdmin,
+}) }}
+    
 {% endnamespace %}
 
 {% endblock %}

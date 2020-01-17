@@ -9,6 +9,8 @@ use craft\log\FileTarget;
 
 use yii\log\Logger;
 
+use verbb\base\BaseHelper;
+
 trait PluginTrait
 {
     // Static Properties
@@ -23,21 +25,6 @@ trait PluginTrait
     public function getService()
     {
         return $this->get('service');
-    }
-
-    private function _setPluginComponents()
-    {
-        $this->setComponents([
-            'service' => Service::class,
-        ]);
-    }
-
-    private function _setLogging()
-    {
-        Craft::getLogger()->dispatcher->targets[] = new FileTarget([
-            'logFile' => Craft::getAlias('@storage/logs/default-dashboard.log'),
-            'categories' => ['default-dashboard'],
-        ]);
     }
 
     public static function log($message, $attributes = [])
@@ -70,6 +57,27 @@ trait PluginTrait
         }
 
         Craft::getLogger()->log($message, Logger::LEVEL_ERROR, 'default-dashboard');
+    }
+
+
+    // Private Methods
+    // =========================================================================
+
+    private function _setPluginComponents()
+    {
+        $this->setComponents([
+            'service' => Service::class,
+        ]);
+
+        BaseHelper::registerModule();
+    }
+
+    private function _setLogging()
+    {
+        Craft::getLogger()->dispatcher->targets[] = new FileTarget([
+            'logFile' => Craft::getAlias('@storage/logs/default-dashboard.log'),
+            'categories' => ['default-dashboard'],
+        ]);
     }
 
 }
