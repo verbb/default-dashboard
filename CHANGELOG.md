@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.7 - 2020-04-15
+
+### Added
+- Craft 3.4 compatibility.
+
+### Changed
+- File logging now checks if the overall Craft app uses file logging.
+- Log files now only include `GET` and `POST` additional variables.
+
 ## 1.0.6 - 2019-11-27
 
 ### Added
