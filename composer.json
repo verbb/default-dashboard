@@ -2,7 +2,7 @@
     "name": "verbb/default-dashboard",
     "description": "A Craft CMS plugin to set default dashboard widgets for users.",
     "type": "craft-plugin",
-    "version": "1.0.7",
+    "version": "1.0.8",
     "keywords": [
         "craft",
         "cms",
@@ -25,7 +25,7 @@
     ],
     "require": {
         "craftcms/cms": "^3.0.0",
-        "verbb/base": "^1.0.0"
+        "verbb/base": "^1.0.2"
     },
     "autoload": {
         "psr-4": {
