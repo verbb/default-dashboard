@@ -16,7 +16,7 @@ trait PluginTrait
     // Static Properties
     // =========================================================================
 
-    public static $plugin;
+    public static DefaultDashboard $plugin;
 
 
     // Public Methods
@@ -27,7 +27,7 @@ trait PluginTrait
         return $this->get('service');
     }
 
-    public static function log($message, $attributes = [])
+    public static function log($message, $attributes = []): void
     {
         $settings = DefaultDashboard::$plugin->getSettings();
 
@@ -43,7 +43,7 @@ trait PluginTrait
         Craft::getLogger()->log($message, Logger::LEVEL_INFO, 'default-dashboard');
     }
 
-    public static function error($message, $attributes = [])
+    public static function error($message, $attributes = []): void
     {
         $settings = DefaultDashboard::$plugin->getSettings();
 
@@ -63,7 +63,7 @@ trait PluginTrait
     // Private Methods
     // =========================================================================
 
-    private function _setPluginComponents()
+    private function _setPluginComponents(): void
     {
         $this->setComponents([
             'service' => Service::class,
@@ -72,7 +72,7 @@ trait PluginTrait
         BaseHelper::registerModule();
     }
 
-    private function _setLogging()
+    private function _setLogging(): void
     {
         BaseHelper::setFileLogging('default-dashboard');
     }

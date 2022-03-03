@@ -14,7 +14,7 @@ class Service extends Component
     // Public Methods
     // =========================================================================
 
-    public function afterUserLogin(UserEvent $event)
+    public function afterUserLogin(UserEvent $event): void
     {
         $settings = DefaultDashboard::$plugin->getSettings();
 
@@ -29,7 +29,7 @@ class Service extends Component
         $isAdmin = Craft::$app->user->getIsAdmin();
 
         if (!$defaultUser) {
-            DefaultDashboard::error("Default User not found for ID: $settings->userDashboard");
+            DefaultDashboard::error(sprintf('Default User not found for ID: %s', $settings->userDashboard));
             return;
         }
 
@@ -73,21 +73,24 @@ class Service extends Component
     // Protected Methods
     // =========================================================================
 
-    private function _deleteUserWidgets($userId)
+    private function _deleteUserWidgets($userId): void
     {
         Craft::$app->getDb()->createCommand()
             ->delete('{{%widgets}}', ['userId' => $userId])
             ->execute();
     }
 
-    public function _getUserWidgets($userId)
+    /**
+     * @return \yii\db\ActiveRecord[]
+     */
+    public function _getUserWidgets($userId): array
     {
         return WidgetRecord::find()
             ->where(['userId' => $userId])
             ->all();
     }
 
-    public function _compareWidgets($currentUserWidgets, $defaultUserWidgets)
+    public function _compareWidgets(array $currentUserWidgets, array $defaultUserWidgets): bool
     {
         $areSame = true;
 
@@ -101,7 +104,7 @@ class Service extends Component
         for ($i = 0; $i < count($currentUserWidgets); $i++) { 
             $currentUserWidget = $currentUserWidgets[$i]->toArray();
             $defaultUserWidget = $defaultUserWidgets[$i]->toArray();
-
+            
             // Strip off any correctly unique data
             $array1 = [
                 'type' => $currentUserWidget['type'],
@@ -130,7 +133,7 @@ class Service extends Component
         return $areSame;
     }
 
-    private function _setUserWidgets($user, $widgets)
+    private function _setUserWidgets($user, $widgets): void
     {
         $transaction = Craft::$app->getDb()->beginTransaction();
         try {
@@ -153,7 +156,10 @@ class Service extends Component
         }
     }
 
-    private function _widgets($widgets)
+    /**
+     * @return mixed[]
+     */
+    private function _widgets($widgets): array
     {
         $array = [];
 

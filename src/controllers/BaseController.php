@@ -11,7 +11,7 @@ class BaseController extends Controller
     // Public Methods
     // =========================================================================
 
-    public function actionSettings()
+    public function actionSettings(): void
     {
         $settings = DefaultDashboard::$plugin->getSettings();
 

@@ -5,6 +5,7 @@ use verbb\defaultdashboard\base\PluginTrait;
 use verbb\defaultdashboard\models\Settings;
 
 use Craft;
+use craft\base\Model;
 use craft\base\Plugin;
 use craft\events\RegisterUrlRulesEvent;
 use craft\helpers\UrlHelper;
@@ -18,8 +19,8 @@ class DefaultDashboard extends Plugin
     // Public Properties
     // =========================================================================
 
-    public $schemaVersion = '1.0.0';
-    public $hasCpSettings = true;
+    public string $schemaVersion = '1.0.0';
+    public bool $hasCpSettings = true;
 
 
     // Traits
@@ -31,7 +32,7 @@ class DefaultDashboard extends Plugin
     // Public Methods
     // =========================================================================
 
-    public function init()
+    public function init(): void
     {
         parent::init();
 
@@ -43,16 +44,16 @@ class DefaultDashboard extends Plugin
         $this->_registerEventHandlers();
     }
 
-    public function getSettingsResponse()
+    public function getSettingsResponse(): mixed
     {
-        Craft::$app->getResponse()->redirect(UrlHelper::cpUrl('default-dashboard/settings'));
+        return Craft::$app->getResponse()->redirect(UrlHelper::cpUrl('default-dashboard/settings'));
     }
 
 
     // Protected Methods
     // =========================================================================
 
-    protected function createSettingsModel(): Settings
+    protected function createSettingsModel(): ?Model
     {
         return new Settings();
     }
@@ -61,7 +62,7 @@ class DefaultDashboard extends Plugin
     // Private Methods
     // =========================================================================
 
-    private function _registerCpRoutes()
+    private function _registerCpRoutes(): void
     {
         Event::on(UrlManager::class, UrlManager::EVENT_REGISTER_CP_URL_RULES, function(RegisterUrlRulesEvent $event) {
             $event->rules = array_merge($event->rules, [
@@ -70,7 +71,7 @@ class DefaultDashboard extends Plugin
         });
     }
 
-    private function _registerEventHandlers()
+    private function _registerEventHandlers(): void
     {
         Event::on(User::class, User::EVENT_AFTER_LOGIN, [$this->getService(), 'afterUserLogin']);
     }
