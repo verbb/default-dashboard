@@ -1,11 +1,12 @@
 <?php
 namespace verbb\defaultdashboard\services;
 
+use verbb\defaultdashboard\DefaultDashboard;
+
 use Craft;
 use craft\base\Component;
+use craft\helpers\Json;
 use craft\records\Widget as WidgetRecord;
-
-use verbb\defaultdashboard\DefaultDashboard;
 
 use yii\web\UserEvent;
 
@@ -19,14 +20,14 @@ class Service extends Component
         $settings = DefaultDashboard::$plugin->getSettings();
 
         // For the moment, only check on CP requests
-        if (!Craft::$app->getRequest()->isCpRequest) {
+        if (!Craft::$app->getRequest()->getIsCpRequest()) {
             DefaultDashboard::log("Not a CP request");
             return;
         }
 
         $currentUser = $event->identity;
-        $defaultUser = Craft::$app->users->getUserById($settings->userDashboard);
-        $isAdmin = Craft::$app->user->getIsAdmin();
+        $defaultUser = Craft::$app->getUsers()->getUserById($settings->userDashboard);
+        $isAdmin = Craft::$app->getUser()->getIsAdmin();
 
         if (!$defaultUser) {
             DefaultDashboard::error(sprintf('Default User not found for ID: %s', $settings->userDashboard));
@@ -44,8 +45,8 @@ class Service extends Component
 
         DefaultDashboard::log("Current User ID: " . $currentUser->id);
         DefaultDashboard::log("Default User ID: " . $defaultUser->id);
-        DefaultDashboard::log("Current User Widget: " . json_encode($this->_widgets($currentUserWidgets)));
-        DefaultDashboard::log("Default User Widget: " . json_encode($this->_widgets($defaultUserWidgets)));
+        DefaultDashboard::log("Current User Widget: " . Json::encode($this->_widgets($currentUserWidgets)));
+        DefaultDashboard::log("Default User Widget: " . Json::encode($this->_widgets($defaultUserWidgets)));
 
         // If this user has no widgets, create them and finish - or, if we're forcing override
         // If this user is an Admin, and excludeAdmin set to true, not override
@@ -120,8 +121,8 @@ class Service extends Component
                 'settings' => $defaultUserWidget['settings'],
             ];
 
-            DefaultDashboard::log("Current Widgets: " . json_encode($array1));
-            DefaultDashboard::log("Default Widgets: " . json_encode($array2));
+            DefaultDashboard::log("Current Widgets: " . Json::encode($array1));
+            DefaultDashboard::log("Default Widgets: " . Json::encode($array2));
 
             if (array_diff($array1, $array2)) {
                 $areSame = false;

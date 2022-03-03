@@ -5,7 +5,6 @@ use verbb\defaultdashboard\DefaultDashboard;
 use verbb\defaultdashboard\services\Service;
 
 use Craft;
-use craft\log\FileTarget;
 
 use yii\log\Logger;
 
