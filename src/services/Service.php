@@ -9,6 +9,8 @@ use craft\helpers\Json;
 use craft\records\Widget as WidgetRecord;
 
 use yii\web\UserEvent;
+use Throwable;
+use yii\db\ActiveRecord;
 
 class Service extends Component
 {
@@ -82,7 +84,7 @@ class Service extends Component
     }
 
     /**
-     * @return \yii\db\ActiveRecord[]
+     * @return ActiveRecord[]
      */
     public function _getUserWidgets($userId): array
     {
@@ -102,10 +104,10 @@ class Service extends Component
             return false;
         }
 
-        for ($i = 0; $i < count($currentUserWidgets); $i++) { 
+        for ($i = 0; $i < count($currentUserWidgets); $i++) {
             $currentUserWidget = $currentUserWidgets[$i]->toArray();
             $defaultUserWidget = $defaultUserWidgets[$i]->toArray();
-            
+
             // Strip off any correctly unique data
             $array1 = [
                 'type' => $currentUserWidget['type'],
@@ -150,7 +152,7 @@ class Service extends Component
             }
 
             $transaction->commit();
-        } catch (\Throwable $e) {
+        } catch (Throwable $e) {
             $transaction->rollBack();
 
             throw $e;
