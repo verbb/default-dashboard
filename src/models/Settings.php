@@ -8,12 +8,12 @@ class Settings extends Model
     // Public Properties
     // =========================================================================
 
-    public int $userDashboard = 1;
-    public bool $override = true;
     public bool $excludeAdmin = false;
+    public bool $logErrors = false;
+    public bool $logInfo = false;
 
     // Logging
-    public bool $logInfo = false;
-    public bool $logErrors = false;
+    public bool $override = true;
+    public int $userDashboard = 1;
 
 }

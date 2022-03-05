@@ -18,13 +18,8 @@ trait PluginTrait
     public static DefaultDashboard $plugin;
 
 
-    // Public Methods
+    // Static Methods
     // =========================================================================
-
-    public function getService(): Service
-    {
-        return $this->get('service');
-    }
 
     public static function log($message, $attributes = []): void
     {
@@ -56,6 +51,15 @@ trait PluginTrait
         }
 
         Craft::getLogger()->log($message, Logger::LEVEL_ERROR, 'default-dashboard');
+    }
+
+
+    // Public Methods
+    // =========================================================================
+
+    public function getService(): Service
+    {
+        return $this->get('service');
     }
 
 

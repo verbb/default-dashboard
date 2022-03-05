@@ -16,9 +16,9 @@ class BaseController extends Controller
     {
         $settings = DefaultDashboard::$plugin->getSettings();
 
-        return $this->renderTemplate('default-dashboard/settings', array(
+        return $this->renderTemplate('default-dashboard/settings', [
             'settings' => $settings,
-        ));
+        ]);
     }
 
 }
