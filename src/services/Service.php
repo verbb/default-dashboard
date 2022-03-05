@@ -32,11 +32,11 @@ class Service extends Component
         $isAdmin = Craft::$app->getUser()->getIsAdmin();
 
         if (!$defaultUser) {
-            DefaultDashboard::error(sprintf('Default User not found for ID: %s', $settings->userDashboard));
+            DefaultDashboard::error("Default User not found for ID: {$settings->userDashboard}");
             return;
         }
 
-        // Proceed if we've got a setting for the default user, and its not that user logging in
+        // Proceed if we've got a setting for the default user, and it's not that user logging in
         if ($currentUser->id == $defaultUser->id) {
             DefaultDashboard::log("Skip setting dashboard - this is the default user");
             return;
@@ -45,8 +45,8 @@ class Service extends Component
         $currentUserWidgets = $this->_getUserWidgets($currentUser->id);
         $defaultUserWidgets = $this->_getUserWidgets($defaultUser->id);
 
-        DefaultDashboard::log("Current User ID: " . $currentUser->id);
-        DefaultDashboard::log("Default User ID: " . $defaultUser->id);
+        DefaultDashboard::log("Current User ID: {$currentUser->id}");
+        DefaultDashboard::log("Default User ID: {$defaultUser->id}");
         DefaultDashboard::log("Current User Widget: " . Json::encode($this->_widgets($currentUserWidgets)));
         DefaultDashboard::log("Default User Widget: " . Json::encode($this->_widgets($defaultUserWidgets)));
 
@@ -62,7 +62,7 @@ class Service extends Component
             // Remove any existing widgets for the user
             $this->_deleteUserWidgets($currentUser->id);
 
-            // Update the logged in users widgets
+            // Update the logged-in users widgets
             $this->_setUserWidgets($currentUser, $defaultUserWidgets);
 
             // Update the user with their dashboard-set flag so the default widgets aren't added
@@ -73,7 +73,7 @@ class Service extends Component
     }
 
 
-    // Protected Methods
+    // Private Methods
     // =========================================================================
 
     private function _deleteUserWidgets($userId): void
@@ -83,17 +83,14 @@ class Service extends Component
             ->execute();
     }
 
-    /**
-     * @return ActiveRecord[]
-     */
-    public function _getUserWidgets($userId): array
+    private function _getUserWidgets($userId): array
     {
         return WidgetRecord::find()
             ->where(['userId' => $userId])
             ->all();
     }
 
-    public function _compareWidgets(array $currentUserWidgets, array $defaultUserWidgets): bool
+    private function _compareWidgets(array $currentUserWidgets, array $defaultUserWidgets): bool
     {
         $areSame = true;
 
@@ -104,9 +101,9 @@ class Service extends Component
             return false;
         }
 
-        for ($i = 0; $i < count($currentUserWidgets); $i++) {
-            $currentUserWidget = $currentUserWidgets[$i]->toArray();
-            $defaultUserWidget = $defaultUserWidgets[$i]->toArray();
+        foreach ($currentUserWidgets as $currentUserWidget) {
+            $currentUserWidget = $currentUserWidget->toArray();
+            $defaultUserWidget = $currentUserWidget->toArray();
 
             // Strip off any correctly unique data
             $array1 = [
@@ -159,9 +156,6 @@ class Service extends Component
         }
     }
 
-    /**
-     * @return mixed[]
-     */
     private function _widgets($widgets): array
     {
         $array = [];

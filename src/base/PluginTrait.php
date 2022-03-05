@@ -12,7 +12,7 @@ use verbb\base\BaseHelper;
 
 trait PluginTrait
 {
-    // Static Properties
+    // Properties
     // =========================================================================
 
     public static DefaultDashboard $plugin;
@@ -21,7 +21,7 @@ trait PluginTrait
     // Public Methods
     // =========================================================================
 
-    public function getService()
+    public function getService(): Service
     {
         return $this->get('service');
     }

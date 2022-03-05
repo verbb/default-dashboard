@@ -1,21 +1,22 @@
 <?php
 namespace verbb\defaultdashboard\controllers;
 
-use Craft;
+use verbb\defaultdashboard\DefaultDashboard;
+
 use craft\web\Controller;
 
-use verbb\defaultdashboard\DefaultDashboard;
+use yii\web\Response;
 
 class BaseController extends Controller
 {
     // Public Methods
     // =========================================================================
 
-    public function actionSettings(): void
+    public function actionSettings(): Response
     {
         $settings = DefaultDashboard::$plugin->getSettings();
 
-        $this->renderTemplate('default-dashboard/settings', array(
+        return $this->renderTemplate('default-dashboard/settings', array(
             'settings' => $settings,
         ));
     }
