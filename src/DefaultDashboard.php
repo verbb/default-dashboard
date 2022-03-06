@@ -16,7 +16,7 @@ use yii\web\User;
 
 class DefaultDashboard extends Plugin
 {
-    // Public Properties
+    // Properties
     // =========================================================================
 
     public bool $hasCpSettings = true;
