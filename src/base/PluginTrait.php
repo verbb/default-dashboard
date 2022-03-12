@@ -2,6 +2,7 @@
 namespace verbb\defaultdashboard\base;
 
 use verbb\defaultdashboard\DefaultDashboard;
+use verbb\defaultdashboard\models\Settings;
 use verbb\defaultdashboard\services\Service;
 
 use Craft;
@@ -23,6 +24,7 @@ trait PluginTrait
 
     public static function log($message, $attributes = []): void
     {
+        /* @var Settings $settings */
         $settings = DefaultDashboard::$plugin->getSettings();
 
         if ($attributes) {
@@ -39,6 +41,7 @@ trait PluginTrait
 
     public static function error($message, $attributes = []): void
     {
+        /* @var Settings $settings */
         $settings = DefaultDashboard::$plugin->getSettings();
 
         if ($attributes) {

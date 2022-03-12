@@ -2,6 +2,7 @@
 namespace verbb\defaultdashboard\services;
 
 use verbb\defaultdashboard\DefaultDashboard;
+use verbb\defaultdashboard\models\Settings;
 
 use Craft;
 use craft\base\Component;
@@ -9,8 +10,8 @@ use craft\helpers\Json;
 use craft\records\Widget as WidgetRecord;
 
 use yii\web\UserEvent;
+
 use Throwable;
-use yii\db\ActiveRecord;
 
 class Service extends Component
 {
@@ -19,6 +20,7 @@ class Service extends Component
 
     public function afterUserLogin(UserEvent $event): void
     {
+        /* @var Settings $settings */
         $settings = DefaultDashboard::$plugin->getSettings();
 
         // For the moment, only check on CP requests
