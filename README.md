@@ -11,7 +11,7 @@ Importantly, you can allow your users to modify their widgets by turning off the
 ## Installation
 You can install Default Dashboard via the plugin store, or through Composer.
 
-### Craft Plugin Store
+## Craft Plugin Store
 To install **Default Dashboard**, navigate to the _Plugin Store_ section of your Craft control panel, search for `Default Dashboard`, and click the _Try_ button.
 
 ### Composer
