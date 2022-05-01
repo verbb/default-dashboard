@@ -4,12 +4,11 @@ namespace verbb\defaultdashboard\base;
 use verbb\defaultdashboard\DefaultDashboard;
 use verbb\defaultdashboard\models\Settings;
 use verbb\defaultdashboard\services\Service;
+use verbb\base\BaseHelper;
 
 use Craft;
 
 use yii\log\Logger;
-
-use verbb\base\BaseHelper;
 
 trait PluginTrait
 {
@@ -22,36 +21,16 @@ trait PluginTrait
     // Static Methods
     // =========================================================================
 
-    public static function log($message, $attributes = []): void
+    public static function log(string $message, array $params = []): void
     {
-        /* @var Settings $settings */
-        $settings = DefaultDashboard::$plugin->getSettings();
-
-        if ($attributes) {
-            $message = Craft::t('default-dashboard', $message, $attributes);
-        }
-
-        // Check if we should log
-        if (!$settings->logInfo) {
-            return;
-        }
+        $message = Craft::t('default-dashboard', $message, $params);
 
         Craft::getLogger()->log($message, Logger::LEVEL_INFO, 'default-dashboard');
     }
 
-    public static function error($message, $attributes = []): void
+    public static function error(string $message, array $params = []): void
     {
-        /* @var Settings $settings */
-        $settings = DefaultDashboard::$plugin->getSettings();
-
-        if ($attributes) {
-            $message = Craft::t('default-dashboard', $message, $attributes);
-        }
-
-        // Check if we should log
-        if (!$settings->logErrors) {
-            return;
-        }
+        $message = Craft::t('default-dashboard', $message, $params);
 
         Craft::getLogger()->log($message, Logger::LEVEL_ERROR, 'default-dashboard');
     }
@@ -69,7 +48,7 @@ trait PluginTrait
     // Private Methods
     // =========================================================================
 
-    private function _setPluginComponents(): void
+    private function _registerComponents(): void
     {
         $this->setComponents([
             'service' => Service::class,
@@ -78,7 +57,7 @@ trait PluginTrait
         BaseHelper::registerModule();
     }
 
-    private function _setLogging(): void
+    private function _registerLogTarget(): void
     {
         BaseHelper::setFileLogging('default-dashboard');
     }
