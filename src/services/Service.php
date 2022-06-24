@@ -25,8 +25,8 @@ class Service extends Component
         }
 
         $currentUser = $event->identity;
-        $defaultUser = Craft::$app->users->getUserById($settings->userDashboard);
-        $isAdmin = Craft::$app->user->getIsAdmin();
+        $defaultUser = Craft::$app->getUsers()->getUserById($settings->userDashboard);
+        $isAdmin = Craft::$app->getUser()->getIsAdmin();
 
         if (!$defaultUser) {
             DefaultDashboard::error("Default User not found for ID: $settings->userDashboard");
