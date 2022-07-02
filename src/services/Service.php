@@ -104,8 +104,8 @@ class Service extends Component
         }
 
         foreach ($currentUserWidgets as $currentUserWidget) {
-            $currentUserWidget = $currentUserWidget->toArray();
-            $defaultUserWidget = $currentUserWidget->toArray();
+            $currentUserWidget = $currentUserWidget;
+            $defaultUserWidget = $currentUserWidget;
 
             // Strip off any correctly unique data
             $array1 = [
