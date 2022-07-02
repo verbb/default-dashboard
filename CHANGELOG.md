@@ -3,8 +3,8 @@
 ## 2.0.0-beta.1 - 2022-03-10
 
 ### Changed
-- Now requires PHP `^8.0.2`.
-- Now requires Craft `^4.0.0-beta.1`.
+- Now requires PHP `8.0.2+`.
+- Now requires Craft `4.0.0+`.
 
 ## 1.0.8 - 2020-04-16
 
