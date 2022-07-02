@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.0.0-beta.1 - 2022-03-10
+## 2.0.0 - 2022-07-02
 
 ### Changed
 - Now requires PHP `8.0.2+`.
