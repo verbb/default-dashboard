@@ -1,6 +1,8 @@
 {% extends 'default-dashboard/_layouts' %}
 {% import '_includes/forms' as forms %}
 
+{% requireAdmin %}
+
 {% set crumbs = [
     { label: 'Default Dashboard' | t('default-dashboard'), url: url('default-dashboard/settings') },
     { label: 'Settings' | t('app'), url: url('default-dashboard/settings') }
