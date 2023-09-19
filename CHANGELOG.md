@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.1 - 2023-09-19
+
+### Changed
+- New plugin icon.
+
 ## 2.0.0 - 2022-07-02
 
 ### Changed
