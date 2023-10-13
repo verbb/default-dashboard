@@ -25,7 +25,7 @@ class Service extends Component
 
         // For the moment, only check on CP requests
         if (!Craft::$app->getRequest()->getIsCpRequest()) {
-            DefaultDashboard::log("Not a CP request");
+            DefaultDashboard::info("Not a CP request");
             return;
         }
 
@@ -40,24 +40,24 @@ class Service extends Component
 
         // Proceed if we've got a setting for the default user, and it's not that user logging in
         if ($currentUser->id == $defaultUser->id) {
-            DefaultDashboard::log("Skip setting dashboard - this is the default user");
+            DefaultDashboard::info("Skip setting dashboard - this is the default user");
             return;
         }
 
         $currentUserWidgets = $this->_getUserWidgets($currentUser->id);
         $defaultUserWidgets = $this->_getUserWidgets($defaultUser->id);
 
-        DefaultDashboard::log("Current User ID: {$currentUser->id}");
-        DefaultDashboard::log("Default User ID: {$defaultUser->id}");
-        DefaultDashboard::log("Current User Widget: " . Json::encode($this->_widgets($currentUserWidgets)));
-        DefaultDashboard::log("Default User Widget: " . Json::encode($this->_widgets($defaultUserWidgets)));
+        DefaultDashboard::info("Current User ID: {$currentUser->id}");
+        DefaultDashboard::info("Default User ID: {$defaultUser->id}");
+        DefaultDashboard::info("Current User Widget: " . Json::encode($this->_widgets($currentUserWidgets)));
+        DefaultDashboard::info("Default User Widget: " . Json::encode($this->_widgets($defaultUserWidgets)));
 
         // If this user has no widgets, create them and finish - or, if we're forcing override
         // If this user is an Admin, and excludeAdmin set to true, not override
         if ((!$currentUserWidgets || $settings->override) && (!$settings->excludeAdmin || !$isAdmin)) {
             // To prevent massive re-creating of widgets each login, check if default vs current is different
             if ($this->_compareWidgets($currentUserWidgets, $defaultUserWidgets)) {
-                DefaultDashboard::log("Users widgets are the same");
+                DefaultDashboard::info("Users widgets are the same");
                 return;
             }
 
@@ -97,8 +97,8 @@ class Service extends Component
         $areSame = true;
 
         if (count($currentUserWidgets) != count($defaultUserWidgets)) {
-            DefaultDashboard::log("Current User Widgets Count: " . count($currentUserWidgets));
-            DefaultDashboard::log("Default User Widgets Count: " . count($defaultUserWidgets));
+            DefaultDashboard::info("Current User Widgets Count: " . count($currentUserWidgets));
+            DefaultDashboard::info("Default User Widgets Count: " . count($defaultUserWidgets));
 
             return false;
         }
@@ -122,8 +122,8 @@ class Service extends Component
                 'settings' => $defaultUserWidget['settings'],
             ];
 
-            DefaultDashboard::log("Current Widgets: " . Json::encode($array1));
-            DefaultDashboard::log("Default Widgets: " . Json::encode($array2));
+            DefaultDashboard::info("Current Widgets: " . Json::encode($array1));
+            DefaultDashboard::info("Default Widgets: " . Json::encode($array2));
 
             if (array_diff($array1, $array2)) {
                 $areSame = false;

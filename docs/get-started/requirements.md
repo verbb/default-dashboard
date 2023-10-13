@@ -1,7 +1,7 @@
 # Requirements
 
 ## Craft CMS
-Default Dashboard requires Craft CMS 4.0 or greater.
+Default Dashboard requires Craft CMS 5.0 or greater.
 
 ## PHP
-Default Dashboard requires PHP 8.0.2 or greater.
+Default Dashboard requires PHP 8.2 or greater.

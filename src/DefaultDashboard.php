@@ -38,8 +38,6 @@ class DefaultDashboard extends Plugin
 
         self::$plugin = $this;
 
-        $this->_registerComponents();
-        $this->_registerLogTarget();
         $this->_registerEventHandlers();
 
         if (Craft::$app->getRequest()->getIsCpRequest()) {
