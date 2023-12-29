@@ -6,6 +6,7 @@ use verbb\defaultdashboard\models\Settings;
 
 use Craft;
 use craft\base\Component;
+use craft\helpers\Db;
 use craft\helpers\Json;
 use craft\records\Widget as WidgetRecord;
 
@@ -68,9 +69,7 @@ class Service extends Component
             $this->_setUserWidgets($currentUser, $defaultUserWidgets);
 
             // Update the user with their dashboard-set flag so the default widgets aren't added
-            Craft::$app->getDb()->createCommand()
-                ->update('{{%users}}', ['hasDashboard' => true], ['id' => $currentUser->id])
-                ->execute();
+            Db::update('{{%users}}', ['hasDashboard' => true], ['id' => $currentUser->id]);
         }
     }
 
@@ -80,9 +79,7 @@ class Service extends Component
 
     private function _deleteUserWidgets($userId): void
     {
-        Craft::$app->getDb()->createCommand()
-            ->delete('{{%widgets}}', ['userId' => $userId])
-            ->execute();
+        Db::delete('{{%widgets}}', ['userId' => $userId]);
     }
 
     private function _getUserWidgets($userId): array
