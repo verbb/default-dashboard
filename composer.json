@@ -30,7 +30,7 @@
     },
     "autoload": {
         "psr-4": {
-          "verbb\\defaultdashboard\\": "src/"
+            "verbb\\defaultdashboard\\": "src/"
         }
     },
     "extra": {
