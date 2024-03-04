@@ -1,5 +1,5 @@
-# Default Dashboard plugin for Craft CMS
-<img width="500" src="https://verbb.imgix.net/plugins/default-dashboard/default-dashboard-social-card.png?v=1">
+<p align="center"><img src="https://verbb.imgix.net/plugins/default-dashboard/default-dashboard-icon.svg" width="100" height="100" alt="Default Dashboard icon"></p>
+<h1 align="center">Default Dashboard for Craft CMS</h1>
 
 Default Dashboard is a Craft CMS plugin that makes it possible to setup default widgets for each of your users. Rather than setting up widgets for each user manually, or instructing your client - have them populated automatically.
 
