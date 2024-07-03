@@ -109,14 +109,14 @@ class Service extends Component
                 'type' => $currentUserWidget['type'],
                 'sortOrder' => $currentUserWidget['sortOrder'],
                 'colspan' => $currentUserWidget['colspan'],
-                'settings' => $currentUserWidget['settings'],
+                'settings' => Json::encode($currentUserWidget['settings']),
             ];
 
             $array2 = [
                 'type' => $defaultUserWidget['type'],
                 'sortOrder' => $defaultUserWidget['sortOrder'],
                 'colspan' => $defaultUserWidget['colspan'],
-                'settings' => $defaultUserWidget['settings'],
+                'settings' => Json::encode($defaultUserWidget['settings']),
             ];
 
             DefaultDashboard::info("Current Widgets: " . Json::encode($array1));
