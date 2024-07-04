@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.0.1 - 2024-07-04
+
+### Changed
+- Update English translations.
+
+### Fixed
+- Fix an error when logging in to compare widgets.
+
 ## 3.0.0 - 2024-05-13
 
 ### Changed
