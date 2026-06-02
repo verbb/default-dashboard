@@ -43,11 +43,12 @@ class Service extends Component
         }
 
         $currentUser = $event->identity;
-        $defaultUser = $settings->getUserDashboardUser();
+        $defaultUserId = $settings->getUserDashboardIdForUser($currentUser);
+        $defaultUser = $settings->getUserDashboardUserForUser($currentUser);
         $isAdmin = Craft::$app->getUser()->getIsAdmin();
 
         if (!$defaultUser) {
-            DefaultDashboard::error("Default User not found for ID: {$settings->userDashboard}");
+            DefaultDashboard::error("Default User not found for ID: {$defaultUserId}");
             return;
         }
 
@@ -98,6 +99,7 @@ class Service extends Component
     {
         return WidgetRecord::find()
             ->where(['userId' => $userId])
+            ->orderBy(['sortOrder' => SORT_ASC])
             ->all();
     }
 

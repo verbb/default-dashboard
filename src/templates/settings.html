@@ -17,6 +17,7 @@
 <input type="hidden" name="pluginHandle" value="default-dashboard">
 
 {% set options = [] %}
+{% set userIds = [] %}
 
 {% for user in craft.users.all() %}
     {% set label = user.username %}
@@ -26,6 +27,7 @@
     {% endif %}
 
     {% set options = options | merge([{ label: label, value: user.id }]) %}
+    {% set userIds = userIds | merge([user.id]) %}
 {% endfor %}
 
 {% if missingUserDashboard %}
@@ -34,6 +36,13 @@
         value: settings.userDashboard,
     }] | merge(options) %}
 {% endif %}
+
+{% set userDashboardByGroup = settings.getUserDashboardByGroup() %}
+{% set userGroups = craft.app.userGroups.getAllGroups() %}
+{% set groupDashboardOptions = [{
+    label: 'Use global default' | t('default-dashboard'),
+    value: '',
+}] | merge(options) %}
 
 {% namespace 'settings' %}
 
@@ -51,6 +60,39 @@
 {% if missingUserDashboard %}
     <p class="warning with-icon">{{ 'The configured default dashboard user no longer exists. Select another user to resume dashboard syncing.' | t('default-dashboard') }}</p>
 {% endif %}
+
+<hr>
+
+<h2>{{ 'User Group Dashboards' | t('default-dashboard') }}</h2>
+
+<p>{{ 'Optionally choose a different source dashboard for each user group. Users in multiple groups use the first matching group shown below.' | t('default-dashboard') }}</p>
+
+{% for group in userGroups %}
+    {% set selectedUserId = userDashboardByGroup[group.handle] ?? '' %}
+    {% set fieldOptions = groupDashboardOptions %}
+
+    {% if selectedUserId and selectedUserId not in userIds %}
+        {% set fieldOptions = [{
+            label: 'Use global default' | t('default-dashboard'),
+            value: '',
+        }, {
+            label: 'Deleted user (ID {id})' | t('default-dashboard', { id: selectedUserId }),
+            value: selectedUserId,
+        }] | merge(options) %}
+    {% endif %}
+
+    {{ forms.selectField({
+        label: group.name,
+        instructions: 'Select a user to use as the default dashboard for this group.' | t('default-dashboard'),
+        id: 'userDashboardByGroup-' ~ group.handle,
+        name: 'userDashboardByGroup[' ~ group.handle ~ ']',
+        options: fieldOptions,
+        value: selectedUserId,
+        errors: settings.getErrors('userDashboardByGroup'),
+    }) }}
+{% else %}
+    <p class="zilch">{{ 'No user groups exist yet.' | t('default-dashboard') }}</p>
+{% endfor %}
 
 {{ forms.lightswitchField({
     label: 'Override User Dashboard' | t('default-dashboard'),
