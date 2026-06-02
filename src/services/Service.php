@@ -31,7 +31,7 @@ class Service extends Component
         }
 
         $currentUser = $event->identity;
-        $defaultUser = Craft::$app->getUsers()->getUserById($settings->userDashboard);
+        $defaultUser = $settings->getUserDashboardUser();
         $isAdmin = Craft::$app->getUser()->getIsAdmin();
 
         if (!$defaultUser) {

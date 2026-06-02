@@ -28,17 +28,29 @@
     {% set options = options | merge([{ label: label, value: user.id }]) %}
 {% endfor %}
 
+{% if missingUserDashboard %}
+    {% set options = [{
+        label: 'Deleted user (ID {id})' | t('default-dashboard', { id: settings.userDashboard }),
+        value: settings.userDashboard,
+    }] | merge(options) %}
+{% endif %}
+
 {% namespace 'settings' %}
 
 {{ forms.selectField({
     first: true,
     label: 'Default User Dashboard' | t('default-dashboard'),
-    instructions: 'Select a user to use as the default dashboard, mirrored to all other users.' | t('default-widgets'),
+    instructions: 'Select a user to use as the default dashboard, mirrored to all other users.' | t('default-dashboard'),
     id: 'userDashboard',
     name: 'userDashboard',
     options: options,
     value: settings.userDashboard,
+    errors: settings.getErrors('userDashboard'),
 }) }}
+
+{% if missingUserDashboard %}
+    <p class="warning with-icon">{{ 'The configured default dashboard user no longer exists. Select another user to resume dashboard syncing.' | t('default-dashboard') }}</p>
+{% endif %}
 
 {{ forms.lightswitchField({
     label: 'Override User Dashboard' | t('default-dashboard'),

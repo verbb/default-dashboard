@@ -17,9 +17,11 @@ class BaseController extends Controller
     {
         /* @var Settings $settings */
         $settings = DefaultDashboard::$plugin->getSettings();
+        $defaultUser = $settings->getUserDashboardUser();
 
         return $this->renderTemplate('default-dashboard/settings', [
             'settings' => $settings,
+            'missingUserDashboard' => !$defaultUser,
         ]);
     }
 
