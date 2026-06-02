@@ -9,6 +9,7 @@ use craft\base\Model;
 use craft\base\Plugin;
 use craft\events\RegisterUrlRulesEvent;
 use craft\helpers\UrlHelper;
+use craft\services\Users;
 use craft\web\UrlManager;
 
 use yii\base\Event;
@@ -74,6 +75,7 @@ class DefaultDashboard extends Plugin
 
     private function _registerEventHandlers(): void
     {
+        Event::on(Users::class, Users::EVENT_AFTER_ACTIVATE_USER, [$this->getService(), 'afterUserActivation']);
         Event::on(User::class, User::EVENT_AFTER_LOGIN, [$this->getService(), 'afterUserLogin']);
     }
 }

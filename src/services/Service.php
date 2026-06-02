@@ -6,27 +6,39 @@ use verbb\defaultdashboard\models\Settings;
 
 use Craft;
 use craft\base\Component;
+use craft\events\UserEvent as CraftUserEvent;
 use craft\helpers\Db;
 use craft\helpers\Json;
 use craft\records\Widget as WidgetRecord;
 
-use yii\web\UserEvent;
+use yii\web\UserEvent as WebUserEvent;
 
 use Throwable;
 
 class Service extends Component
 {
+    // Properties
+    // =========================================================================
+
+    private array $_activatedUserIds = [];
+
+
     // Public Methods
     // =========================================================================
 
-    public function afterUserLogin(UserEvent $event): void
+    public function afterUserActivation(CraftUserEvent $event): void
+    {
+        if ($event->user?->id) {
+            $this->_activatedUserIds[$event->user->id] = true;
+        }
+    }
+
+    public function afterUserLogin(WebUserEvent $event): void
     {
         /* @var Settings $settings */
         $settings = DefaultDashboard::$plugin->getSettings();
 
-        // For the moment, only check on CP requests
-        if (!Craft::$app->getRequest()->getIsCpRequest()) {
-            DefaultDashboard::info("Not a CP request");
+        if (!$this->_shouldSetDashboardOnLogin($event)) {
             return;
         }
 
@@ -100,9 +112,8 @@ class Service extends Component
             return false;
         }
 
-        foreach ($currentUserWidgets as $currentUserWidget) {
-            $currentUserWidget = $currentUserWidget;
-            $defaultUserWidget = $currentUserWidget;
+        foreach ($currentUserWidgets as $i => $currentUserWidget) {
+            $defaultUserWidget = $defaultUserWidgets[$i];
 
             // Strip off any correctly unique data
             $array1 = [
@@ -130,6 +141,25 @@ class Service extends Component
         }
 
         return $areSame;
+    }
+
+    private function _shouldSetDashboardOnLogin(WebUserEvent $event): bool
+    {
+        if (Craft::$app->getRequest()->getIsCpRequest()) {
+            return true;
+        }
+
+        $userId = $event->identity?->id;
+        $autoLoginAfterActivation = Craft::$app->getConfig()->getGeneral()->autoLoginAfterAccountActivation;
+
+        if ($userId && $autoLoginAfterActivation && isset($this->_activatedUserIds[$userId])) {
+            DefaultDashboard::info("Setting dashboard after account activation auto-login");
+            return true;
+        }
+
+        DefaultDashboard::info("Not a CP request");
+
+        return false;
     }
 
     private function _setUserWidgets($user, $widgets): void
