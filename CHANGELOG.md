@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.0.3 - 2026-06-05
+
+### Added
+- Add per-group default dashboard settings with global fallback.
+
+### Fixed
+- Fix default dashboards after activation auto-login.
+- Fix deleted default dashboard user handling.
+
 ## 3.0.2 - 2025-07-18
 
 ### Changed
