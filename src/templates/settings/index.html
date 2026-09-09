@@ -1,21 +1,15 @@
-{% extends 'default-dashboard/_layouts' %}
+{% extends 'default-dashboard/_layouts/settings' %}
+
 {% import '_includes/forms' as forms %}
+{% import 'verbb-base/_macros' as macros %}
 
-{% requireAdmin %}
-
-{% set crumbs = [
-    { label: 'Default Dashboard' | t('default-dashboard'), url: url('default-dashboard/settings') },
-    { label: 'Settings' | t('app'), url: url('default-dashboard/settings') }
-] %}
-
-{% set selectedTab = 'settings' %}
 {% set fullPageForm = true %}
+{% set selectedTab = 'general' %}
+{% set pageTitle = 'General Settings' | t('default-dashboard') %}
+{% set pageAction = 'plugins/save-plugin-settings' %}
+{% set pageUrl = 'default-dashboard/settings' %}
 
-{% block blockContent %}
-
-<input type="hidden" name="action" value="plugins/save-plugin-settings">
-<input type="hidden" name="pluginHandle" value="default-dashboard">
-
+{% block settingsContent %}
 {% set options = [] %}
 {% set userIds = [] %}
 
@@ -44,10 +38,7 @@
     value: '',
 }] | merge(options) %}
 
-{% namespace 'settings' %}
-
 {{ forms.selectField({
-    first: true,
     label: 'Default User Dashboard' | t('default-dashboard'),
     instructions: 'Select a user to use as the default dashboard, mirrored to all other users.' | t('default-dashboard'),
     id: 'userDashboard',
@@ -109,7 +100,4 @@
     name: 'excludeAdmin',
     on: settings.excludeAdmin,
 }) }}
-    
-{% endnamespace %}
-
 {% endblock %}
