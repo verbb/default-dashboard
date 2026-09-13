@@ -4,6 +4,7 @@
         "collapsable": false,
         "children": [
             "get-started/installation-setup",
+            "get-started/setting-up-a-shared-dashboard",
             "get-started/requirements",
             "get-started/configuration"
         ]
