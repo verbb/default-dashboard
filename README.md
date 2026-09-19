@@ -3,6 +3,8 @@
 
 Default Dashboard is a Craft CMS plugin that makes it possible to setup default widgets for each of your users. Rather than setting up widgets for each user manually, or instructing your client - have them populated automatically.
 
+Choose a global source dashboard or different source dashboards for individual user groups, with controls for overriding existing widgets and excluding administrators.
+
 ## Documentation
 Visit the [Default Dashboard Plugin page](https://verbb.io/craft-plugins/default-dashboard) for all documentation, guides, pricing and developer resources.
 
