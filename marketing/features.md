@@ -20,5 +20,5 @@ An empty dashboard is not much of a welcome. Build a shared set of widgets aroun
 
 Choose whether the shared layout should replace a user’s existing widgets or only fill an empty dashboard. Administrators avoid repeating the same setup account by account, while editors continue working through Craft’s normal dashboard interface.
 
-![Default Dashboard settings with global and group-specific source dashboards.](../screenshots/output/feature-tour/default-dashboard-settings.png)
+![Default Dashboard settings with global and group-specific source dashboards.](../screenshots/default-dashboard-settings.png)
 <!-- feature-section-end -->
