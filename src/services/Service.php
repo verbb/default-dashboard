@@ -167,6 +167,7 @@ class Service extends Component
     private function _setUserWidgets($user, $widgets): void
     {
         $transaction = Craft::$app->getDb()->beginTransaction();
+
         try {
             foreach ($widgets as $widgetRecord) {
                 $widget = new WidgetRecord();
