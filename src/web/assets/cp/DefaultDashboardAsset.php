@@ -1,10 +1,10 @@
 <?php
-namespace verbb\defaultdashboard\assetbundles;
+namespace verbb\defaultdashboard\web\assets\cp;
 
 use craft\web\AssetBundle;
 use craft\web\assets\cp\CpAsset;
 
-use verbb\base\assetbundles\CpAsset as VerbbCpAsset;
+use verbb\base\web\assets\cp\CpAsset as VerbbCpAsset;
 
 class DefaultDashboardAsset extends AssetBundle
 {
@@ -13,8 +13,6 @@ class DefaultDashboardAsset extends AssetBundle
 
     public function init(): void
     {
-        $this->sourcePath = "@verbb/defaultdashboard/resources/dist";
-
         $this->depends = [
             VerbbCpAsset::class,
             CpAsset::class,
