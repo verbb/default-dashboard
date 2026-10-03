@@ -19,7 +19,10 @@ trait PluginTrait
     // Traits
     // =========================================================================
 
-    use LogTrait;
+    use LogTrait {
+        error as private _baseError;
+        info as private _baseInfo;
+    }
 
 
     // Static Methods
@@ -34,6 +37,24 @@ trait PluginTrait
                  'service' => Service::class,
             ],
         ];
+    }
+
+    public static function error(string $message, array $params = []): void
+    {
+        if (!self::$plugin?->getSettings()->logErrors) {
+            return;
+        }
+
+        self::_baseError($message, $params);
+    }
+
+    public static function info(string $message, array $params = []): void
+    {
+        if (!self::$plugin?->getSettings()->logInfo) {
+            return;
+        }
+
+        self::_baseInfo($message, $params);
     }
 
 

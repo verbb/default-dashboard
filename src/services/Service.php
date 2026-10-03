@@ -43,12 +43,11 @@ class Service extends Component
         }
 
         $currentUser = $event->identity;
-        $defaultUserId = $settings->getUserDashboardIdForUser($currentUser);
         $defaultUser = $settings->getUserDashboardUserForUser($currentUser);
         $isAdmin = Craft::$app->getUser()->getIsAdmin();
 
         if (!$defaultUser) {
-            DefaultDashboard::error("Default User not found for ID: {$defaultUserId}");
+            DefaultDashboard::error('Default dashboard source user was not found.');
             return;
         }
 
@@ -60,11 +59,6 @@ class Service extends Component
 
         $currentUserWidgets = $this->_getUserWidgets($currentUser->id);
         $defaultUserWidgets = $this->_getUserWidgets($defaultUser->id);
-
-        DefaultDashboard::info("Current User ID: {$currentUser->id}");
-        DefaultDashboard::info("Default User ID: {$defaultUser->id}");
-        DefaultDashboard::info("Current User Widget: " . Json::encode($this->_widgets($currentUserWidgets)));
-        DefaultDashboard::info("Default User Widget: " . Json::encode($this->_widgets($defaultUserWidgets)));
 
         // If this user has no widgets, create them and finish - or, if we're forcing override
         // If this user is an Admin, and excludeAdmin set to true, not override
@@ -108,8 +102,10 @@ class Service extends Component
         $areSame = true;
 
         if (count($currentUserWidgets) != count($defaultUserWidgets)) {
-            DefaultDashboard::info("Current User Widgets Count: " . count($currentUserWidgets));
-            DefaultDashboard::info("Default User Widgets Count: " . count($defaultUserWidgets));
+            DefaultDashboard::info('Dashboard widget counts differ (current: {currentCount}, default: {defaultCount}).', [
+                'currentCount' => count($currentUserWidgets),
+                'defaultCount' => count($defaultUserWidgets),
+            ]);
 
             return false;
         }
@@ -132,11 +128,12 @@ class Service extends Component
                 'settings' => Json::encode($defaultUserWidget['settings']),
             ];
 
-            DefaultDashboard::info("Current Widgets: " . Json::encode($array1));
-            DefaultDashboard::info("Default Widgets: " . Json::encode($array2));
-
             if (array_diff($array1, $array2)) {
                 $areSame = false;
+
+                DefaultDashboard::info('Dashboard widgets differ at position {position}.', [
+                    'position' => $i + 1,
+                ]);
 
                 break;
             }
@@ -188,14 +185,4 @@ class Service extends Component
         }
     }
 
-    private function _widgets($widgets): array
-    {
-        $array = [];
-
-        foreach ($widgets as $widget) {
-            $array[] = $widget->toArray();
-        }
-
-        return $array;
-    }
 }
