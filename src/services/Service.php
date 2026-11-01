@@ -48,12 +48,14 @@ class Service extends Component
 
         if (!$defaultUser) {
             DefaultDashboard::error('Default dashboard source user was not found.');
+
             return;
         }
 
         // Proceed if we've got a setting for the default user, and it's not that user logging in
         if ($currentUser->id == $defaultUser->id) {
             DefaultDashboard::info("Skip setting dashboard - this is the default user");
+
             return;
         }
 
@@ -66,6 +68,7 @@ class Service extends Component
             // To prevent massive re-creating of widgets each login, check if default vs current is different
             if ($this->_compareWidgets($currentUserWidgets, $defaultUserWidgets)) {
                 DefaultDashboard::info("Users widgets are the same");
+
                 return;
             }
 
@@ -128,7 +131,7 @@ class Service extends Component
                 'settings' => Json::encode($defaultUserWidget['settings']),
             ];
 
-            if (array_diff($array1, $array2)) {
+            if (array_diff_assoc($array1, $array2)) {
                 $areSame = false;
 
                 DefaultDashboard::info('Dashboard widgets differ at position {position}.', [
@@ -153,6 +156,7 @@ class Service extends Component
 
         if ($userId && $autoLoginAfterActivation && isset($this->_activatedUserIds[$userId])) {
             DefaultDashboard::info("Setting dashboard after account activation auto-login");
+
             return true;
         }
 

@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+### Fixed
+- Fixed the dashboard override not detecting widgets whose settings differ only by column span or sort order.
+
 ## 3.0.9 - 2026-10-07
 
 ### Changed
