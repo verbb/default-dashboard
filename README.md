@@ -10,23 +10,25 @@ An empty dashboard is not much of a welcome. Build a shared set of widgets aroun
 - Define the dashboard widgets new users should receive.
 - Choose different source dashboards for individual user groups.
 - Populate an empty dashboard when a user first needs it.
-- Avoid recreating the same widget collection for every account.
 - Use the dashboard widgets already available to the Craft project.
-- Give editors a predictable starting point across the team.
 - Keep the default widget configuration with the site.
 - Decide whether existing widgets should be replaced and whether administrators should be excluded.
 
 ## Documentation
+
 Visit the [Default Dashboard Plugin page](https://verbb.io/craft-plugins/default-dashboard) for all documentation, guides, pricing and developer resources.
 
 ## Credit & Thanks
+
 Based on [One Dashboard](https://github.com/boboldehampsink/onedashboard), and [Duplicate User Dashboard](https://github.com/james1238/duplicateuserdashboard).
 
 ## Support
-Get in touch with us via the [Default Dashboard Support page](https://verbb.io/craft-plugins/default-dashboard/support) or by [creating a Github issue](https://github.com/verbb/default-dashboard/issues)
+
+Get in touch with us via the [Default Dashboard Support page](https://verbb.io/craft-plugins/default-dashboard/support) or by [creating a GitHub issue](https://github.com/verbb/default-dashboard/issues).
 
 ## Sponsor
-Default Dashboard is licensed under the MIT license, meaning it will always be free and open source - we love free stuff! If you'd like to show your support to the plugin regardless, [Sponsor](https://github.com/sponsors/verbb) development.
+
+Default Dashboard is licensed under the MIT license, so it will always be free and open source. If you'd like to support it anyway, you can [sponsor its development](https://github.com/sponsors/verbb).
 
 <h2></h2>
 

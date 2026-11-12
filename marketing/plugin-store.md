@@ -7,8 +7,6 @@ An empty dashboard is not much of a welcome. Build a shared set of widgets aroun
 - Define the dashboard widgets new users should receive.
 - Choose different source dashboards for individual user groups.
 - Populate an empty dashboard when a user first needs it.
-- Avoid recreating the same widget collection for every account.
 - Use the dashboard widgets already available to the Craft project.
-- Give editors a predictable starting point across the team.
 - Keep the default widget configuration with the site.
 - Decide whether existing widgets should be replaced and whether administrators should be excluded.

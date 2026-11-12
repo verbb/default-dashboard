@@ -11,12 +11,11 @@ An empty dashboard is not much of a welcome. Build a shared set of widgets aroun
 
 <!-- feature-grid -->
 - :icon[users-group] **Group-specific layouts** Give different user groups their own source dashboard, with a global fallback.
-- :icon[layout-dashboard] **Respect personal layouts** Use the shared dashboard as a starting point or keep enforcing it after users make changes.
 - :icon[user-shield] **Admin exclusions** Leave administrator dashboards untouched when they need a different operational view.
 <!-- feature-grid-end -->
 
 <!-- feature-section media-size="large" -->
-## Configure it once
+## Replace or fill existing dashboards
 
 Choose whether the shared layout should replace a user’s existing widgets or only fill an empty dashboard. Administrators avoid repeating the same setup account by account, while editors continue working through Craft’s normal dashboard interface.
 
