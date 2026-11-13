@@ -12,7 +12,7 @@ return [
 ];
 ```
 
-All other settings keep their defaults. Add any further settings you want to change to the same array. The options below explain the available settings and their defaults.
+All other settings keep their defaults. Add any further settings you want to change to the same array. The options below explain the available settings and their defaults. You can also manage these settings in the control panel under **Settings → Default Dashboard**.
 
 ## Configuration Options
 
@@ -39,7 +39,3 @@ Whether to force the default dashboard, overwriting any user-specific ones. This
 
 Whether to exclude the admin user when force overwrite is enabled. This will occur on each login.
 :::
-
-
-## Control Panel
-You can also manage configuration settings through the Control Panel by visiting Settings → Default Dashboard.
